@@ -4,19 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./src/css/index.css">
   </head>
   <body>
-    <header class="p-3 mb-3 border-bottom fw-semibold" style="background-color: rgb(25, 20, 121); display: flex; flex-direction: row;">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+    <header class="p-3 border-bottom fw-semibold" style="background-color: rgb(25, 20, 121); display: flex; flex-direction: row;">
+        <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
             <img src="src/assets/descarga.png" alt="logo" style="height: fit-content; max-height: 50px; background-color: rgba(255, 255, 255, 0.912); border-radius: 50px;object-fit: fill;">
         </a>
         <div class="container mt-2" >
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav nav-underline">
-                <li><a href="/index.html" class="nav-link px-2" style="color: white;">Home</a></li>
+                <li><a href="#" class="nav-link px-2" style="color: white;">Home</a></li>
                 <li><a href="#" class="nav-link px-2" style="color: white;">Inventory</a></li>
                 <li><a href="#" class="nav-link px-2" style="color: white;">Customers</a></li>
                 <li><a href="#" class="nav-link px-2" style="color: white;">Products</a></li>
@@ -29,15 +31,32 @@
     
             <div class="dropdown text-end">
               <button href="#" class="btn btn-outline-light" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-basket3"></i>              </button>
+                <i class="bi bi-basket3"></i></button>
             </div>
           </div>
         </div>
-      </header>
+    </header>
+    
+    <main  style="min-height: 100vh;" class="bg-secondary">
+        <!-- Mostrar Cards -->
+         <section class="container">
+          <div class="row row-cols-1 row-cols-md-2 g-4" id="card__template">
+            
+          </div>
+         </section>
 
-      <!-- Mostrar Cards -->
- </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        
+    </main>
+    
+    <footer class="p-2 bg-success">
+        <h6>Fin</h6>
+    </footer>
+
+    <!--Los scripts deben ir antes que cierre el body-->
+    <script src="./src/app/js/index.js" type="module"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  </body>
 
 </html>
