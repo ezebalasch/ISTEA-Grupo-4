@@ -17,15 +17,20 @@ let cardContainer = document.querySelector("#card__template");
 export function createCards() {
     getProducts().then((data) => {
         data.map((prod) => {
-            let card = `<div class="col">
-                <div class="card">
-                    <img src=${prod.image} class="card-img-top" alt=${prod.title}>
-                    <div class="card-body">
-                    <h5 class="card-title"> ${prod.title}</h5>
-                    <p class="card-text">${prod.description}</p>
-                    </div>
+            let card = `<div class="card" style="width: 16rem;">
+            <div class="d-flex justify-content-center">
+            <img src="${prod.image}" class="card-img-top" alt="${prod.title}" title="${prod.title}">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${prod.title}</h5>
+              <p class="card-text">Descripción breve del producto que estás promocionando. Este producto tiene las mejores características para ti.</p>
+              <h6 class="card-subtitle mb-2">Price: $${prod.price}</h6>
+              <div class="mt-auto">
+              <a href="#" title="Details" class="btn btn-secondary">See more</a>
+                <a href="#" title="Buy" class="btn btn-success">Buy Now!</a>
                 </div>
-                </div>`;
+            </div>
+          </div>`;
 
                 cardContainer.innerHTML += card;
     });
