@@ -26,11 +26,36 @@ export function createCards() {
               <p class="card-text">${prod.description.split(' ').slice(0, 10).join(' ')}...</p>
               <h6 class="card-subtitle mb-2">$${Math.round(prod.price)}</h6>
               <div class="container-btn-card">
-                <a href="#" title="Details" class="ver-mas">Ver más</a>
-                <a href="#" title="Buy" class="comprar">Comprar!</a>
+                <button title="Details" id="btn-detail-${prod.id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="ver-mas">Ver más</button>
+                <button title="Buy" id="btn-buy-${prod.id}" class="comprar">Comprar!</button>
               </div>
             </div>
           </div>`;
+
+          setTimeout(() => {
+            let btnDetail = document.querySelector(`#btn-detail-${prod.id}`);
+            //console.log(btnDetail);
+            btnDetail.onclick = ()=>{
+              let modal = document.querySelector("#staticBackdrop");
+              let modalTitle = document.querySelector("#staticBackdropLabel");
+              modalTitle.innerHTML=prod.title;
+              let modalImage = document.querySelector("#modal-img");
+              modalImage.src = prod.image;
+              modalImage.alt = prod.image;
+              let modalCategory = document.querySelector("#modal-category");
+              let modalDescription = document.querySelector("#modal-description");
+              modalCategory.innerHTML = prod.category;
+              modalDescription.innerHTML = prod.description.split(' ').slice(0, 10).join(' ');
+              let cardPrice = document.querySelector("#card-price");
+              cardPrice.innerHTML = "$ "+prod.price;
+              let rateAndCount = document.querySelector("#rateAndCount");
+              rateAndCount.innerHTML = `Rate: ${prod.rating.rate} Count: ${prod.rating.count}`;
+            }
+          },0);
+
+          
+          
+          
 
                 cardContainer.innerHTML += card;
     });
