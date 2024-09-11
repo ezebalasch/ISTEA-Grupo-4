@@ -21,14 +21,14 @@ export function createCards() {
             <div class="d-flex justify-content-center">
             <img src="${prod.image}" class="card-img-top" alt="${prod.title}" title="${prod.title}">
             </div>
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">${prod.title}</h5>
-              <p class="card-text">Descripción breve del producto que estás promocionando. Este producto tiene las mejores características para ti.</p>
-              <h6 class="card-subtitle mb-2">Price: $${prod.price}</h6>
-              <div class="mt-auto">
-              <a href="#" title="Details" class="btn btn-secondary">See more</a>
-                <a href="#" title="Buy" class="btn btn-success">Buy Now!</a>
-                </div>
+            <div class="card-body d-flex flex-column detail-cont">
+              <h5 class="card-title">${prod.title.split(' ').slice(0, 3).join(' ')}</h5>
+              <p class="card-text">${prod.description.split(' ').slice(0, 10).join(' ')}...</p>
+              <h6 class="card-subtitle mb-2">$${Math.round(prod.price)}</h6>
+              <div class="container-btn-card">
+                <a href="#" title="Details" class="ver-mas">Ver más</a>
+                <a href="#" title="Buy" class="comprar">Comprar!</a>
+              </div>
             </div>
           </div>`;
 
