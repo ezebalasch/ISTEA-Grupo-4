@@ -12,7 +12,8 @@ ul {
 
 .main-footer{
   position: relative;
-  background: #1e2129;
+  /*background: #1e2129;*/
+   background-color: rgb(83, 53, 5);
 }
 
 .footer-content{
@@ -75,7 +76,7 @@ ul {
 }
 .footer-content .logo-widget .footer-social li a:hover{
   color: #ffffff;
-  background: #ff5e14;
+  background: #beaca4;
 }
 .footer-content .logo-widget .logo-box{
   margin-bottom: 25px;
@@ -88,7 +89,7 @@ ul {
   position: relative;
   font-size: 24px;
   line-height: 35px;
-  font-family: 'Playfair Display', serif;
+  
   color: #ffffff;
   font-weight: 700;
   margin-bottom: 27px;
@@ -103,7 +104,7 @@ ul {
   color: #9ea0a9;
 }
 .footer-content .service-widget .list li a:hover{
-  color: #ff5e14;
+  color: #efe8e5;
 }
 .footer-content .contact-widget p{
   color: #9ea0a9;
@@ -131,7 +132,7 @@ ul {
 }
 .footer-bottom .copyright a:hover,
 .footer-bottom .footer-nav li a:hover{
-  color: #ff5e14;
+  color: #f8dacc;
 }
 .footer-bottom .footer-nav{
   position: relative;

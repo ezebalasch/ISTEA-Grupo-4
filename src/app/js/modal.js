@@ -6,6 +6,8 @@ function cutTitle(str){
     }
 
 export function createModal(prod){
+  
+  
     let modal = `<div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -16,7 +18,7 @@ export function createModal(prod){
                   <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src=${prod.image} id="modal-img" class="img-fluid rounded-start" alt="${prod.title}">
+                        <img src=${prod.image} id="modal-img" class="img-fluid rounded-start" alt=${prod.title}>
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
@@ -33,13 +35,28 @@ export function createModal(prod){
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                  <button title="Add to cart" type="button" class="btn btn-success" id="btn-cart">Add to cart!</button>
+                  <button title="Add to cart" type="button" class="btn btn-success" id=btn-cart-${prod.id}>Add to cart!</button>
                 </div>
               </div>
             </div>`
 
             let modalContainer = document.querySelector("#staticBackdrop");
             modalContainer.innerHTML = modal;
+
+            setTimeout(()=>{
+              let carritoId = document.querySelector(`#btn-cart-${prod.id}`);
+              carritoId.onclick = () => {
+                prod.quantity = 1;
+                console.log(prod);
+
+                //JSON.stringify hace el parseo de objeto a string
+                localStorage.setItem("agregadoAlCarrito", JSON.stringify(prod));
+                //Leer datos del localStorage con getitem
+              console.log(JSON.parse(localStorage.getItem("agregadoAlCarrito")));
+              }
+
+            })
+
 
             const myModal = new bootstrap.Modal(modalContainer);
             myModal.show();
