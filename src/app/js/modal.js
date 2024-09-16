@@ -1,3 +1,5 @@
+import { createAside } from "./aside.js";
+
 function cutTitle(str){
     return str.split(' ').slice(0, 3).join(' ');
     }
@@ -46,13 +48,25 @@ export function createModal(prod){
             setTimeout(()=>{
               let carritoId = document.querySelector(`#btn-cart-${prod.id}`);
               carritoId.onclick = () => {
-                prod.quantity = 1;
-                console.log(prod);
-
-                //JSON.stringify hace el parseo de objeto a string
-                localStorage.setItem("agregadoAlCarrito", JSON.stringify(prod));
                 //Leer datos del localStorage con getitem
-              console.log(JSON.parse(localStorage.getItem("agregadoAlCarrito")));
+                Swal.fire("Agregaste el producto al carrito!");
+                let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito"));
+                let productoExiste = objLocalStorage.find((e) => e.id === prod.id);
+                let index = objLocalStorage.findIndex((p)=> p.id === prod.id);
+               
+                if(productoExiste){
+                  productoExiste.quantity += 1;
+                  objLocalStorage[index] = productoExiste;
+                }
+                else{ 
+                  prod.quantity = 1;
+                  objLocalStorage.push(prod)
+                }
+                
+                //JSON.stringify hace el parseo de objeto a string
+                //localstorage solo admite string
+                localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
+                createAside();
               }
 
             })

@@ -1,7 +1,13 @@
 import { getProducts } from "../api/api.js";
-//import { getCategories } from "../api/api.js";
 import { createCards } from "./cards.js";
-import { createModal } from "./modal.js";
+import { createAside } from "./aside.js";
 createCards();
-getProducts();
-createModal();
+
+/*Inicializar el localstorage como array vacio*/
+
+if(localStorage.getItem("productosCarrito") == null){
+    localStorage.setItem("productosCarrito", JSON.stringify([]))
+}
+
+createAside();
+
