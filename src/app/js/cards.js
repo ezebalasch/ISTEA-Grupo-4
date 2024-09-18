@@ -20,11 +20,11 @@ export function createCards() {
             <div class="card-body d-flex flex-column detail-cont">
               <h5 class="card-title">${cutTitle(prod.title)}</h5>
               <p class="card-text">${cutDescription(prod.description)}...</p>
-              <h6 class="card-subtitle mb-2">$${Math.round(prod.price)}</h6>
+              <h6 class="card-subtitle mb-2">Price: $${Math.round(prod.price)}</h6>
               <div class="container-btn-card">
                 <button title="Details" id="btn-detail-${prod.id}" class="ver-mas">Ver más</button>
                 <button title="Buy" id="btn-buy-${prod.id}" class="comprar">Comprar!</button>
-              </div>
+               </div>
             </div>
           </div>`;
 

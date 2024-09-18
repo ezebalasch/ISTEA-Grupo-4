@@ -2,7 +2,15 @@
 export function createAside(){
     let asideContainer = document.querySelector("#aside");
     let productStorage = JSON.parse(localStorage.getItem("productosCarrito"));
-    productStorage.map((p)=> { 
+    if (productStorage && productStorage.length){
+        //let btnsCarrito = document.querySelector("#btnsCarrito");
+        //btnsCarrito.setAttribute("style","display:flex !important;");
+        let btnFin = document.querySelector("#btn-finalizar")
+        let btnElim = document.querySelector("#btn-eliminar")
+        btnFin.setAttribute("style", "display:block !important");
+        btnElim.setAttribute("style", "display:block !important");
+    } 
+   productStorage && productStorage.map((p)=> { 
         let aside = 
             `<div class="card mb-3" style="max-width: 540px;" id="card-${p.id}">
                 <div class="row g-0">
@@ -42,20 +50,26 @@ export function createAside(){
                 btnMenos.onclick = ()=>{
                     
                     let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito"));
-                    let index = objLocalStorage.findIndex((product)=> product.id === p.id);
+                    let index = objLocalStorage.findIndex((product)=> product.id === p.id); 
                     p.quantity -= 1;
                     if (p.quantity === 0){
                         objLocalStorage.splice(index,1)
                         let cardRemove = document.querySelector(`#card-${p.id}`)
                         cardRemove.remove();
+                        Swal.fire({title: "El producto ha sido eliminado del carrito",
+                            confirmButtonColor: "#008000",
+                            timer: 1500
+                        });
+                        
                     } else{
                         spanQuantity.innerHTML = p.quantity;
                         parrafPrice.innerHTML = `Price: $${p.price*p.quantity}`
                         objLocalStorage[index] = p;    
                     }
 
-                    localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage))
 
+                    localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage))
+                    
                     
                     //JSON.stringify hace el parseo de objeto a string
                     //localstorage solo admite string
@@ -67,4 +81,38 @@ export function createAside(){
 
             asideContainer.innerHTML += aside;
         });
+        let btnFinalizar = document.querySelector("#btn-finalizar")
+        let btnEliminar = document.querySelector("#btn-eliminar")
+        btnFinalizar.onclick = () =>{
+            asideContainer.innerHTML = "";
+            localStorage.removeItem("productosCarrito");
+            btnFinalizar.setAttribute("style", "display:none !important");
+            btnEliminar.setAttribute("style", "display:none !important");
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Su compra ha sido finalizada!",
+                showConfirmButton: false,
+                timer: 2000
+              });
+              createAside();
+        }
+        
+        btnEliminar.onclick = () =>{
+            asideContainer.innerHTML = "";
+            localStorage.removeItem("productosCarrito");
+            btnFinalizar.setAttribute("style", "display:none !important");
+            btnEliminar.setAttribute("style", "display:none !important");
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Los productos han sido eliminados del carrito",
+                showConfirmButton: false,
+                timer: 2000
+              });
+              createAside();
+        }
 }
+
+
+    

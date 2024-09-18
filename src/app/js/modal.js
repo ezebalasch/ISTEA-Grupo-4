@@ -48,8 +48,16 @@ export function createModal(prod){
             setTimeout(()=>{
               let carritoId = document.querySelector(`#btn-cart-${prod.id}`);
               carritoId.onclick = () => {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Agregado al carrito con éxito!",
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+                
                 //Leer datos del localStorage con getitem
-                Swal.fire("Agregaste el producto al carrito!");
+                
                 let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito"));
                 let productoExiste = objLocalStorage.find((e) => e.id === prod.id);
                 let index = objLocalStorage.findIndex((p)=> p.id === prod.id);
