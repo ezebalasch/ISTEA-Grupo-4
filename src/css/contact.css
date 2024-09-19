@@ -15,3 +15,9 @@ i{
     color:white;
     background-color: rgb(214, 137, 16);
 }
+
+main{
+    background: url("../assets/imgs/back_falopa.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
