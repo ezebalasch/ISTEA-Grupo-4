@@ -58,27 +58,24 @@ export function createModal(prod){
                 
                 //Leer datos del localStorage con getitem
                 
-                let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito"));
+                let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito")) || [];
                 let productoExiste = objLocalStorage.find((e) => e.id === prod.id);
-                let index = objLocalStorage.findIndex((p)=> p.id === prod.id);
-               
+                let index = objLocalStorage.findIndex((p) => p.id === prod.id);
+                
                 if(productoExiste){
                   productoExiste.quantity += 1;
                   objLocalStorage[index] = productoExiste;
-                }
-                else{ 
+                } else {
                   prod.quantity = 1;
-                  objLocalStorage.push(prod)
+                  objLocalStorage.push(prod);
                 }
-                
-                //JSON.stringify hace el parseo de objeto a string
+                   //JSON.stringify hace el parseo de objeto a string
                 //localstorage solo admite string
                 localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
                 createAside();
               }
 
-            })
-
+            }, 0 );
 
             const myModal = new bootstrap.Modal(modalContainer);
             myModal.show();
