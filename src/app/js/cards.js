@@ -28,10 +28,10 @@ export function createCards() {
               <div class="container-btn-card">
                 <button title="Details" id="btn-detail-${
                   prod.id
-                }" class="ver-mas">Ver más</button>
+                }" class="ver-mas w-100 btn-lg">Details</button>
                 <button title="Buy" id="btn-buy-${
                   prod.id
-                }" class="comprar">Comprar!</button>
+                }
                </div>
             </div>
           </div>`;
