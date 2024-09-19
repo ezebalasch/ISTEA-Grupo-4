@@ -1,0 +1,17 @@
+i{
+    text-decoration: none;
+    color: rgb(214, 137, 16);
+
+}
+.ver-mas{
+    border:1px solid rgb(214, 137, 16);
+    text-decoration: none;
+    color: rgb(214, 137, 16);
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.ver-mas:hover{
+    color:white;
+    background-color: rgb(214, 137, 16);
+}
