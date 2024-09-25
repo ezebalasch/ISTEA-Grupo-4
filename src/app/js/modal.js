@@ -1,4 +1,5 @@
 import { createAside } from "./aside.js";
+import { contador } from "./contador-carrito.js";
 
 function cutTitle(str){
     return str.split(' ').slice(0, 3).join(' ');
@@ -73,6 +74,7 @@ export function createModal(prod){
                 //localstorage solo admite string
                 localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
                 createAside();
+                contador();
               }
 
             }, 0 );

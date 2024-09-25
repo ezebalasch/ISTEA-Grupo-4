@@ -1,3 +1,5 @@
+import { contador } from "./contador-carrito.js";
+
 export function createAside() {
     let asideContainer = document.querySelector("#aside");
     let productStorage = JSON.parse(localStorage.getItem("productosCarrito")) || [];
@@ -136,6 +138,8 @@ export function createAside() {
                 timer: 2000
             });
             createAside();
+            contador();
+
         };
 
 
@@ -152,6 +156,8 @@ export function createAside() {
                 timer: 2000
             });
             createAside();
+            contador();
+
         };
 
 
@@ -181,6 +187,7 @@ function updateTotalCompra() {
     if (totalCompraElement) {
         totalCompraElement.innerHTML = `<h4 class="text-center">Total: $${totalCompra.toFixed(2)}</h4>`;
     }
+    contador();
 
 
 }
