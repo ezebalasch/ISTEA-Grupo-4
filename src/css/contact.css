@@ -1,23 +1,45 @@
 i{
     text-decoration: none;
-    color: rgb(214, 137, 16);
+    color: #177ca0;
 
 }
 .ver-mas{
-    border:1px solid rgb(214, 137, 16);
+    border:1px solid #177ca0;
     text-decoration: none;
-    color: rgb(214, 137, 16);
+    color: #177ca0;
     padding: 10px 15px;
     border-radius: 10px;
 }
 
 .ver-mas:hover{
     color:white;
-    background-color: rgb(214, 137, 16);
+    background-color: #177ca0;
 }
 
-main{
-    background: url("../assets/imgs/back_falopa.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+
+
+
+#navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100000;
+    transition: top 0.3s ease-in-out;
+    background-color:  #37718E;
+}
+
+body {
+    padding-top: 120px;
+    background: linear-gradient(150deg, #e5e5e5 25%, #177ca0 );
+}
+
+@media (max-width: 820px) {
+    #navbar {
+        min-height: 120px; 
+    }
+
+    body {
+        padding-top: 160px; 
+    }
 }

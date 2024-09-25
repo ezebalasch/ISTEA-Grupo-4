@@ -2,15 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700");
 
-body {
-   font-family: "Open Sans", sans-serif;
-}
 
-main{
-    background-image: url("../assets/imgs/back_falopa.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+
 
 
 *:hover {
@@ -166,4 +159,30 @@ h1 a {
    background-color: #232323;
    color: #fff;
    text-decoration: none;
+}
+
+
+#navbar{
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 1000000;
+   transition: top 0.3s ease-in-out;
+   background-color:  #37718E;
+}
+
+body {
+   padding-top: 130px;
+   background: linear-gradient(150deg, #e5e5e5 25%, #177ca0 );
+}
+
+@media (max-width: 768px) {
+   #navbar {
+       min-height: 120px; 
+   }
+
+   body {
+       padding-top: 160px; 
+   }
 }

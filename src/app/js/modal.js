@@ -51,7 +51,7 @@ export function createModal(prod){
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Agregado al carrito con éxito!",
+                  title: "Added to cart successfully!",
                   showConfirmButton: false,
                   timer: 2000
                 });
