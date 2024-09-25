@@ -70,7 +70,7 @@ export function createAside() {
                         objLocalStorage.splice(index, 1);
                         document.querySelector(`#card-${p.id}`).remove();
                         Swal.fire({
-                            title: "El producto ha sido eliminado del carrito",
+                            title: "The product has been removed from the cart",
                             confirmButtonColor: "#008000",
                             timer: 1500
                         });
@@ -84,7 +84,7 @@ export function createAside() {
                             btnElim.setAttribute("style", "display:none !important");
                             let aside = `
                             <div style="text-align:center">
-                                <span style="color:grey">Su Carrito está vacío</span>
+                                <span style="color:grey">Your cart is empty</span>
                                 <img src="src/assets/carrito-vacio.jpg" style="width:100%;object-fit:content">
                             </div>`;
                         asideContainer.innerHTML = aside;
@@ -131,7 +131,7 @@ export function createAside() {
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Su compra ha sido finalizada!",
+                title: "Your purchase has been finalized!",
                 showConfirmButton: false,
                 timer: 2000
             });
@@ -147,7 +147,7 @@ export function createAside() {
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Los productos han sido eliminados del carrito",
+                title: "The product has been removed from the cart",
                 showConfirmButton: false,
                 timer: 2000
             });
@@ -165,7 +165,7 @@ export function createAside() {
 
         let aside = `
             <div style="text-align:center">
-                <span style="color:grey">Su Carrito está vacío</span>
+                <span style="color:grey">Your cart is empty</span>
                 <img src="src/assets/carrito-vacio.jpg" style="width:100%;object-fit:content">
             </div>`;
         asideContainer.innerHTML = aside;
@@ -175,10 +175,12 @@ export function createAside() {
 
 // Función para actualizar el total de la compra
 function updateTotalCompra() {
-    let productStorage = JSON.parse(localStorage.getItem("productosCarrito")) || [];
+
     let totalCompra = productStorage.reduce((total, p) => total + (p.price * p.quantity), 0);
     let totalCompraElement = document.getElementById("total-compra");
     if (totalCompraElement) {
         totalCompraElement.innerHTML = `<h4 class="text-center">Total: $${totalCompra.toFixed(2)}</h4>`;
     }
+
+
 }

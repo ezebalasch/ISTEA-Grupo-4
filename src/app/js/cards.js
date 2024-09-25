@@ -13,28 +13,31 @@ let cardContainer = document.querySelector("#card__template");
 export function createCards() {
   getProducts().then((data) => {
     data.map((prod) => {
-      let card = `<div class="card" style="width: 16rem;">
-            <div class="d-flex justify-content-center">
-            <img src="${prod.image}" class="card-img-top" alt="${
-        prod.title
-      }" title="${prod.title}">
-            </div>
-            <div class="card-body d-flex flex-column detail-cont">
-              <h5 class="card-title">${cutTitle(prod.title)}</h5>
-              <p class="card-text">${cutDescription(prod.description)}...</p>
-              <h6 class="card-subtitle mb-2">Price: $${Math.round(
-                prod.price
-              )}</h6>
-              <div class="container-btn-card">
-                <button title="Details" id="btn-detail-${
-                  prod.id
-                }" class="ver-mas w-100 btn-lg">Details</button>
-                <button title="Buy" id="btn-buy-${
-                  prod.id
-                }
-               </div>
-            </div>
-          </div>`;
+      
+        let card = `<div class="card" style="width: 16rem;">
+        <div class="d-flex justify-content-center">
+        <img src="${prod.image}" class="card-img-top" alt="${
+    prod.title
+    }" title="${prod.title}">
+        </div>
+        <div class="card-body d-flex flex-column detail-cont">
+          <h5 class="card-title">${cutTitle(prod.title)}</h5>
+          <p class="card-text">${cutDescription(prod.description)}...</p>
+          <h6 class="card-subtitle mb-2">Price: $${Math.round(
+            prod.price
+          )}</h6>
+          <div class="container-btn-card">
+            <button title="Details" id="btn-detail-${
+              prod.id
+            }" class="ver-mas w-100 btn-lg">Details</button>
+            <button title="Buy" id="btn-buy-${
+              prod.id
+            }
+           </div>
+        </div>
+      </div>`; 
+
+
 
       setTimeout(() => {
         let btnDetail = document.querySelector(`#btn-detail-${prod.id}`);
@@ -46,6 +49,7 @@ export function createCards() {
       }, 0);
 
       cardContainer.innerHTML += card;
+    
     });
   });
 }
