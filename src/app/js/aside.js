@@ -19,12 +19,29 @@ export function createAside() {
 
         // Función para actualizar el total de la compra
         function updateTotalCompra() {
+            let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito"));
 
-            let totalCompra = productStorage.reduce((total, p) => total + (p.price * p.quantity), 0);
+            let totalCompra = objLocalStorage.reduce((total, p) => total + (p.price * p.quantity), 0);
             let totalCompraElement = document.getElementById("total-compra");
             if (totalCompraElement) {
                 totalCompraElement.innerHTML = `<h4 class="text-center">Total: $${totalCompra.toFixed(2)}</h4>`;
             }
+
+            if (objLocalStorage.length === 0) {
+                let btnFin = document.querySelector("#btn-finalizar");
+                let btnElim = document.querySelector("#btn-eliminar");
+                btnFin.setAttribute("style", "display:none !important");
+                btnElim.setAttribute("style", "display:none !important");
+                let aside = `
+                <div style="text-align:center">
+                    <span style="color:grey">Your cart is empty</span>
+                    <img src="src/assets/carrito-vacio.jpg" style="width:100%;object-fit:content">
+                </div>`;
+            asideContainer.innerHTML = aside;
+   
+            }
+
+
             contador();
         }
 
@@ -42,6 +59,7 @@ export function createAside() {
                                 <button type="button" class="btn btn-danger" id="decrease-${p.id}">-</button>
                                 <span class="mx-2 fs-5" id="quantity-${p.id}">${p.quantity}</span>
                                 <button type="button" class="btn btn-success" id="increase-${p.id}">+</button>
+                                <a id="remove-${p.id}" style="font-size:24px; color:red; padding-left:5px; cursor: pointer;"><i class="bi bi-trash3"></i></a>
                             </div>
                         </div>
                     </div>
@@ -115,6 +133,38 @@ export function createAside() {
 
                     // Actualizar el total de la compra
                     updateTotalCompra();
+                };
+
+                // Eliminar artículo al hacer clic en el ícono de la papelera
+                let btnEliminar = document.querySelector(`#remove-${p.id}`);
+                btnEliminar.onclick = () => {
+                    let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito"));
+                    let index = objLocalStorage.findIndex((product) => product.id === p.id);
+
+                    if (p.quantity === 1) {
+                        btnEliminar.disabled = true;
+                
+                        Swal.fire({
+                            title: "No puedes eliminar el producto si solo queda 1 unidad.",
+                            confirmButtonColor: "#008000",
+                            timer: 1500
+                        });
+                
+                    } else {
+                        objLocalStorage.splice(index, 1);
+                        document.querySelector(`#card-${p.id}`).remove();
+                
+                        Swal.fire({
+                            title: "Producto eliminado del carrito",
+                            confirmButtonColor: "#008000",
+                            timer: 1500
+                        });        
+                        localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
+                        // Actualizar el total de la compra
+                        updateTotalCompra();
+                
+                    }
+
                 };
             }, 0);
         });
