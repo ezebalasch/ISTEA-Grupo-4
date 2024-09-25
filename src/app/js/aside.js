@@ -17,6 +17,17 @@ export function createAside() {
         btnElim.setAttribute("style", "display:block !important");
 
 
+        // Función para actualizar el total de la compra
+        function updateTotalCompra() {
+
+            let totalCompra = productStorage.reduce((total, p) => total + (p.price * p.quantity), 0);
+            let totalCompraElement = document.getElementById("total-compra");
+            if (totalCompraElement) {
+                totalCompraElement.innerHTML = `<h4 class="text-center">Total: $${totalCompra.toFixed(2)}</h4>`;
+            }
+            contador();
+        }
+
         productStorage.map((p) => {
             let aside = `
                 <div class="card mb-3" style="max-width: 540px;" id="card-${p.id}">
@@ -179,15 +190,5 @@ export function createAside() {
 }
 
 
-// Función para actualizar el total de la compra
-function updateTotalCompra() {
-
-    let totalCompra = productStorage.reduce((total, p) => total + (p.price * p.quantity), 0);
-    let totalCompraElement = document.getElementById("total-compra");
-    if (totalCompraElement) {
-        totalCompraElement.innerHTML = `<h4 class="text-center">Total: $${totalCompra.toFixed(2)}</h4>`;
-    }
-    contador();
 
 
-}
