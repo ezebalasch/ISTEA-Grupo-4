@@ -64,7 +64,9 @@ export function createAside() {
                 let parrafPrice = document.querySelector(`#price-${p.id}`);
 
                 // Mostrar u ocultar el botón "menos" según la cantidad
-                btnMenos.style.display = p.quantity === 1 ? "none" : "inline-block";
+                /*btnMenos.style.display = p.quantity === 1 ? "none" : "inline-block";*/
+                btnMenos.disabled = p.quantity === 1 ? true : false;
+
 
                 btnMas.onclick = () => {
                     let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito")) || [];
@@ -79,7 +81,7 @@ export function createAside() {
                     updateTotalCompra();
 
                     // Mostrar el botón "menos"
-                    btnMenos.style.display = "inline-block";
+                    btnMenos.disabled = false;
                 };
 
                 btnMenos.onclick = () => {
@@ -105,7 +107,8 @@ export function createAside() {
                     updateTotalCompra();
 
                     // Ocultar el botón "menos" si la cantidad es 1
-                    btnMenos.style.display = p.quantity === 1 ? "none" : "inline-block";
+                    /*btnMenos.style.display = p.quantity === 1 ? "none" : "inline-block";*/
+                    btnMenos.disabled = p.quantity === 1 ? true : false;
                 };
 
                 let btnEliminar = document.querySelector(`#remove-${p.id}`);
