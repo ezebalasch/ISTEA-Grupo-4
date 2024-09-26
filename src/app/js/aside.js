@@ -73,7 +73,7 @@ export function createAside() {
                     let index = objLocalStorage.findIndex((product) => product.id === p.id);
                     p.quantity += 1;
                     spanQuantity.innerHTML = p.quantity;
-                    parrafPrice.innerHTML = `Price: $${(p.price * p.quantity).toFixed(2)}`;
+                    parrafPrice.innerHTML = `Price: $${(p.price).toFixed(2)}`;
                     objLocalStorage[index].quantity = p.quantity;
                     localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
 
@@ -88,20 +88,9 @@ export function createAside() {
                     let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito")) || [];
                     let index = objLocalStorage.findIndex((product) => product.id === p.id);
                     p.quantity -= 1;
-
-                    if (p.quantity === 0) {
-                        objLocalStorage.splice(index, 1);
-                        document.querySelector(`#card-${p.id}`).remove();
-                        Swal.fire({
-                            title: "The product has been removed from the cart",
-                            confirmButtonColor: "#008000",
-                            timer: 1500
-                        });
-                    } else {
-                        spanQuantity.innerHTML = p.quantity;
-                        parrafPrice.innerHTML = `Price: $${(p.price * p.quantity).toFixed(2)}`;
-                        objLocalStorage[index].quantity = p.quantity;
-                    }
+                    spanQuantity.innerHTML = p.quantity;
+                    parrafPrice.innerHTML = `Price: $${(p.price).toFixed(2)}`;
+                    objLocalStorage[index].quantity = p.quantity;
 
                     localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
                     updateTotalCompra();
@@ -113,69 +102,102 @@ export function createAside() {
 
                 let btnEliminar = document.querySelector(`#remove-${p.id}`);
                 btnEliminar.onclick = () => {
-                    let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito")) || [];
-                    let index = objLocalStorage.findIndex((product) => product.id === p.id);
-                    objLocalStorage.splice(index, 1);
-                    document.querySelector(`#card-${p.id}`).remove();
-
                     Swal.fire({
-                        title: "Product removed from cart",
-                        confirmButtonColor: "#008000",
-                        timer: 1500
+                    title: "Are you sure?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#198754",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let objLocalStorage = JSON.parse(localStorage.getItem("productosCarrito")) || [];
+                        let index = objLocalStorage.findIndex((product) => product.id === p.id);
+                        objLocalStorage.splice(index, 1);
+                        document.querySelector(`#card-${p.id}`).remove();
+
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your product has been removed from the cart.",
+                            icon: "success",
+                            confirmButtonColor: "#008000",
+                            timer: 1500
+                        });
+
+                         localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
+                        updateTotalCompra();
+                        }
                     });
-                    localStorage.setItem("productosCarrito", JSON.stringify(objLocalStorage));
-                    updateTotalCompra();
                 };
+
             }, 0);
         });
 
-        let totalCompra = productStorage.reduce((total, p) => total + (p.price * p.quantity), 0);
-        let totalCompraElement = document.createElement("div");
-        totalCompraElement.id = "total-compra";
-        totalCompraElement.innerHTML = `<h4 class="text-center">Total: $${totalCompra.toFixed(2)}</h4>`;
-        asideContainer.appendChild(totalCompraElement);
+            let totalCompra = productStorage.reduce((total, p) => total + (p.price * p.quantity), 0);
+            let totalCompraElement = document.createElement("div");
+            totalCompraElement.id = "total-compra";
+            totalCompraElement.innerHTML = `<h4 class="text-center">Total: $${totalCompra.toFixed(2)}</h4>`;
+            asideContainer.appendChild(totalCompraElement);
 
-        let btnFinalizar = document.querySelector("#btn-finalizar");
-        let btnEliminar = document.querySelector("#btn-eliminar");
+            let btnFinalizar = document.querySelector("#btn-finalizar");
+            let btnEliminar = document.querySelector("#btn-eliminar");
 
-        btnFinalizar.onclick = () => {
-            asideContainer.innerHTML = "";
-            localStorage.removeItem("productosCarrito");
-            btnFinalizar.setAttribute("style", "display:none !important");
-            btnEliminar.setAttribute("style", "display:none !important");
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Your purchase has been finalized!",
-                showConfirmButton: false,
-                timer: 2000
-            });
-            createAside();
-            contador();
-        };
+            btnFinalizar.onclick = () => {
+                asideContainer.innerHTML = "";
+                localStorage.removeItem("productosCarrito");
+                btnFinalizar.setAttribute("style", "display:none !important");
+                btnEliminar.setAttribute("style", "display:none !important");
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Your purchase has been finalized!",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                createAside();
+                contador();
+            };
 
-        btnEliminar.onclick = () => {
-            asideContainer.innerHTML = "";
-            localStorage.setItem("productosCarrito", JSON.stringify([]));
-            btnFinalizar.setAttribute("style", "display:none !important");
-            btnEliminar.setAttribute("style", "display:none !important");
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "The product has been removed from the cart",
-                showConfirmButton: false,
-                timer: 2000
-            });
-            createAside();
-            contador();
-        };
-    } else {
-        let btnFin = document.querySelector("#btn-finalizar");
-        let btnElim = document.querySelector("#btn-eliminar");
-        btnFin.setAttribute("style", "display:none !important");
-        btnElim.setAttribute("style", "display:none !important");
+            btnEliminar.onclick = () => {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#198754",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+                      asideContainer.innerHTML = "";
+                    localStorage.setItem("productosCarrito", JSON.stringify([]));
+                    btnFinalizar.setAttribute("style", "display:none !important");
+                    btnEliminar.setAttribute("style", "display:none !important");
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "The product has been removed from the cart",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    createAside();
+                    contador();
+                            }
+                        });
+            
+            };
+            } else {
+            let btnFin = document.querySelector("#btn-finalizar");
+            let btnElim = document.querySelector("#btn-eliminar");
+            btnFin.setAttribute("style", "display:none !important");
+            btnElim.setAttribute("style", "display:none !important");
 
-        asideContainer.innerHTML = `
+            asideContainer.innerHTML = `
             <div style="text-align:center">
                 <span style="color:grey">Your cart is empty</span>
                 <img src="src/assets/carrito-vacio.jpg" style="width:100%;object-fit:content">
