@@ -2,16 +2,10 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700");
 
-
-
-
-
 *:hover {
    -webkit-transition: all 1s ease;
    transition: all 1s ease;
 }
-
-
 
 h1 {
    float: left;
@@ -37,14 +31,16 @@ h1 a {
 }
 
 .card__container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 1rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 2rem;
+   max-width: 1200px; 
+   margin: 0 auto; 
+   padding: 1rem;
 }
 
-/*Profile Card 3*/
 .profile-card-3 {
    font-family: "Open Sans", Arial, sans-serif;
    overflow: hidden;
@@ -53,17 +49,18 @@ h1 a {
    height: 368px;
    border: none;
    transition: transform 0.5s ease-in-out;
-   box-shadow: 18px -5px 25px 5px rgba(0,0,0,0.75);
-   -webkit-box-shadow: 18px -5px 25px 5px rgba(0,0,0,0.75);
-   -moz-box-shadow: 18px -5px 25px 5px rgba(0,0,0,0.75);
-
+   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); 
+   -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+   -moz-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
 }
+
 .profile-card-3:hover {
     transform: translateY(-5px);
-    box-shadow: 32px -11px 55px 9px rgba(0,0,0,0.75);
-   -webkit-box-shadow: 32px -11px 55px 9px rgba(0,0,0,0.75);
-   -moz-box-shadow: 32px -11px 55px 9px rgba(0,0,0,0.75);
- }
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
 
 .profile-card-3 .background-block {
    
@@ -175,7 +172,7 @@ h1 a {
 body {
    padding-top: 130px;
    background: linear-gradient(150deg, #e5e5e5 25%, #177ca0 );
-}
+} 
 
 @media (max-width: 768px) {
    #navbar {
@@ -185,4 +182,5 @@ body {
    body {
        padding-top: 160px; 
    }
+
 }

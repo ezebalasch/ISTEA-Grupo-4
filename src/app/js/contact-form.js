@@ -16,7 +16,7 @@ btnEnviarMensaje.onclick = () =>{
         Swal.fire({
             position: "center",
             icon: "success",
-            title: "Su email ha sido enviado con éxito!",
+            title: "Your email has been sent successfully!",
             showConfirmButton: false,
             timer: 1500
           });
@@ -25,7 +25,7 @@ btnEnviarMensaje.onclick = () =>{
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Los campos deben estar completos!",
+            text: "The fields must be complete!",
           });
     }
     

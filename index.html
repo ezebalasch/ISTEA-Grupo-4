@@ -32,9 +32,12 @@
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="inputForm">
             </form>
             <div class="dropdown text-end">
-              <button href="#" class="btn btn-outline-light" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" type="button" data-bs-toggle="offcanvas" aria-expanded="false">
-              <i class="bi bi-cart"></i>
-              <span id="cart-count" class="badge bg-danger rounded-pill"></span>
+              <button href="#" class="btn btn-outline-light position-relative" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" type="button" data-bs-toggle="offcanvas" aria-expanded="false">
+                <i class="bi bi-cart"></i>
+                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  0
+                  <span class="visually-hidden">items in cart</span>
+                </span>
               </button>
             </div>
           </div>
@@ -72,7 +75,7 @@
               </div>
             </div>
         </aside>
-    </main>
+      </main>
     
     <footer class="main-footer">
       <div class="container">
